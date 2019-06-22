@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BBWS Cilicis Apps</string>
+    <string name="instansi">Balai Besar Wilayah\nSungai Ciliwung Cisadane</string>
+    <string name="instansi_2">DIREKTORAT JENDERAL SUMBER DAYA AIR\nKEMETERIAN PEKERJAAN UMUM DAN PERUMAHAN RAKYAT</string>
+
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="account">Account</string>
+    <string name="kritik_dan_saran">Kritik dan Saran</string>
+</resources>
