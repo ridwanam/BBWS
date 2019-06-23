@@ -1,8 +1,12 @@
 package com.k.bbws;
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -10,67 +14,51 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    SwipeRefreshLayout swipeRefreshLayout;
-    WebView webView;
-    WebSettings webSettings;
 
-    String URL = "https://www.bbwscilicis.com/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        swipeRefreshLayout = findViewById(R.id.swipe_refresh);
-        webView = findViewById(R.id.web_view);
+        // kita set default nya Home Fragment
 
-        swipeRefreshLayout.setOnRefreshListener(this);
-
-        webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true); // Untuk mengaktifkan javascript
-        webSettings.getUseWideViewPort();
-
-        webView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                // Menampilkan loading ketika webview proses load halaman
-                swipeRefreshLayout.setRefreshing(true);
-            }
-        });
-
-        webView.setWebViewClient(new WebViewClient(){
-            // Ketika webview error atau selesai load page loading akan dismiss
-
-            @Override
-            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-
-        webView.loadUrl(URL);
+        loadFragment(new HomeFragment());
+// inisialisasi BottomNavigaionView
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bn_main);
+// beri listener pada saat item/menu bottomnavigation terpilih
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
     }
 
-    @Override
-    public void onRefresh() {
-        // Untuk refresh webview dengan swipe
-        webView.reload();
-    }
-
-    @Override
-    public void onBackPressed() {
-        // Jika Webview bisa di back maka backward page sebelumnya
-        if (webView.canGoBack()) {
-            webView.goBack();
-        } else {
-            finish();
-            System.exit(0);
+    private boolean loadFragment(Fragment fragment){
+        if (fragment != null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fl_container, fragment)
+                    .commit();
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Fragment fragment = null;
+        switch (menuItem.getItemId()){
+            case R.id.home_menu:
+                fragment = new HomeFragment();
+                break;
+            case R.id.search_menu:
+                fragment = new SearchFragment();
+                break;
+            case R.id.kiritikSaran:
+                fragment = new KritikSaranFragment();
+                break;
+            case R.id.account_menu:
+                fragment = new AkunFragment();
+                break;
+        }
+        return loadFragment(fragment);
     }
 }
