@@ -3,14 +3,17 @@
     package="com.k.bbws">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".Save"
         android:icon="@drawable/logopu"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logopu"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".SplashScreenAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,5 +1,8 @@
 package com.k.bbws;
 
+import android.app.Application;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,6 +21,8 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
+
 
 public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -47,10 +52,20 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         webView = view.findViewById(R.id.web_view);
 
         swipeRefreshLayout.setOnRefreshListener(this);
-
         webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true); // Untuk mengaktifkan javascript
         webSettings.getUseWideViewPort();
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setUseWideViewPort(true);
+
+        webSettings.setSupportZoom(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setDisplayZoomControls(true);
+
+        webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        webView.setScrollbarFadingEnabled(false);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setAppCacheEnabled(true);
 
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -88,7 +103,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             }
 
         });
-
+        webView.setWebChromeClient(new MyChrome());
         webView.loadUrl(URL);
 
         return view;
@@ -100,4 +115,49 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     public void onRefresh() {
         webView.reload();
     }
+
+    private class MyChrome extends WebChromeClient {
+
+        private View mCustomView;
+        private WebChromeClient.CustomViewCallback mCustomViewCallback;
+        protected FrameLayout mFullscreenContainer;
+        private int mOriginalOrientation;
+        private int mOriginalSystemUiVisibility;
+
+        MyChrome() {}
+
+        public Bitmap getDefaultVideoPoster()
+        {
+            if (mCustomView == null) {
+                return null;
+            }
+            return BitmapFactory.decodeResource(getActivity().getResources(), 2130837573);
+        }
+
+        public void onHideCustomView()
+        {
+            ((FrameLayout)getActivity().getWindow().getDecorView()).removeView(this.mCustomView);
+            this.mCustomView = null;
+            getActivity().getWindow().getDecorView().setSystemUiVisibility(this.mOriginalSystemUiVisibility);
+            getActivity().setRequestedOrientation(this.mOriginalOrientation);
+            this.mCustomViewCallback.onCustomViewHidden();
+            this.mCustomViewCallback = null;
+        }
+
+        public void onShowCustomView(View paramView, WebChromeClient.CustomViewCallback paramCustomViewCallback)
+        {
+            if (this.mCustomView != null)
+            {
+                onHideCustomView();
+                return;
+            }
+            this.mCustomView = paramView;
+            this.mOriginalSystemUiVisibility = getActivity().getWindow().getDecorView().getSystemUiVisibility();
+            this.mOriginalOrientation = getActivity().getRequestedOrientation();
+            this.mCustomViewCallback = paramCustomViewCallback;
+            ((FrameLayout)getActivity().getWindow().getDecorView()).addView(this.mCustomView, new FrameLayout.LayoutParams(-1, -1));
+            getActivity().getWindow().getDecorView().setSystemUiVisibility(3846);
+        }
+    }
+
 }
