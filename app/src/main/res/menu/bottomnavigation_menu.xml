@@ -15,9 +15,9 @@
         android:id="@+id/kiritikSaran"
         android:title="@string/kritik_dan_saran"
         android:icon="@drawable/ic_critic"/>
-    <item
-        android:id="@+id/account_menu"
-        android:title="@string/account"
-        android:icon="@drawable/ic_account"/>
+    <!--<item-->
+        <!--android:id="@+id/account_menu"-->
+        <!--android:title="@string/account"-->
+        <!--android:icon="@drawable/ic_account"/>-->
 
 </menu>

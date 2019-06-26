@@ -8,7 +8,7 @@
     <FrameLayout
         android:id="@+id/fl_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="#f4d03f"
+        android:background="@color/YellowPrimary"
         app:itemIconTint="@drawable/state_btnnav"
         app:itemTextColor="@drawable/state_btnnav"
         app:layout_constraintBottom_toBottomOf="@+id/fl_container"
