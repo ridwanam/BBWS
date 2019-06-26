@@ -52,6 +52,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         webView = view.findViewById(R.id.web_view);
 
         swipeRefreshLayout.setOnRefreshListener(this);
+
         webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true); // Untuk mengaktifkan javascript
         webSettings.getUseWideViewPort();
