@@ -3,16 +3,9 @@ package com.k.bbws;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -53,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new SearchFragment();
                 break;
             case R.id.kiritikSaran:
-                fragment = new KritikSaranFragment();
+                fragment = new PengaduanPublik();
                 break;
 //            case R.id.account_menu:
 //                fragment = new AkunFragment();

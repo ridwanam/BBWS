@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -38,7 +39,16 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
     Context context;
     int anim = 0;
 
-    final Handler handler = new Handler();
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@org.jetbrains.annotations.NotNull Message message) {
+            switch (message.what) {
+                case 1:{
+                    webViewGoBack();
+                }break;
+            }
+        }
+    };
     SwipeRefreshLayout swipeRefreshLayout;
     WebView webView;
     WebSettings webSettings;

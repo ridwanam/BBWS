@@ -57,11 +57,13 @@
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="190dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCari">
+        app:layout_constraintTop_toBottomOf="@+id/btnCari"
+        app:layout_constraintVertical_bias="1.0">
 
         <WebView
             android:id="@+id/webView"
