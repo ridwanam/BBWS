@@ -36,7 +36,7 @@ public class PengaduanPublik extends Fragment implements SwipeRefreshLayout.OnRe
     WebView webView;
     WebSettings webSettings;
 
-    String URL = "https://docs.google.com/forms/d/e/1FAIpQLSeeLX89vC0rLZ5j3qctmWi2FpKlTQsDW-gssVpDNYHCJa0Urw/viewform?embedded=true";
+    String URL = "https://docs.google.com/forms/d/e/1FAIpQLSd2yCbLlehZDdVF4QN3JeUIfzhyNPGW29lNJNHFaSr3AxttMw/formResponse?embedded=true";
 
     @Nullable
     @Override
