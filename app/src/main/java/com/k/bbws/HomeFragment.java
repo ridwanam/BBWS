@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     WebView webView;
     WebSettings webSettings;
 
-    String URL = "https://www.bbwscilicis.com/";
+    String URL = "http://sda.pu.go.id/bbwscilicis/";
 
     @Nullable
     @Override

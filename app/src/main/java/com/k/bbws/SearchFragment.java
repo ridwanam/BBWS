@@ -52,7 +52,7 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
     SwipeRefreshLayout swipeRefreshLayout;
     WebView webView;
     WebSettings webSettings;
-    String URL = "https://www.bbwscilicis.com/?s=";
+    String URL = "http://sda.pu.go.id/bbwscilicis/?s=";
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
