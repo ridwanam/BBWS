@@ -12,12 +12,13 @@
         android:icon="@drawable/ic_search"/>
 
     <item
+        android:id="@+id/video_menu"
+        android:title="Video"
+        android:icon="@drawable/ic_media"/>
+
+    <item
         android:id="@+id/kiritikSaran"
         android:title="@string/kritik_dan_saran"
         android:icon="@drawable/ic_critic"/>
-    <!--<item-->
-        <!--android:id="@+id/account_menu"-->
-        <!--android:title="@string/account"-->
-        <!--android:icon="@drawable/ic_account"/>-->
 
 </menu>
