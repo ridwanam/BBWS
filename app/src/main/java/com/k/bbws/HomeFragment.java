@@ -1,8 +1,10 @@
 package com.k.bbws;
 
 import android.app.Application;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,6 +25,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 
 public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -78,6 +82,18 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         webView.setWebViewClient(new WebViewClient(){
             // Ketika webview error atau selesai load page loading akan dismiss
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url == null || url.startsWith("http://") || url.startsWith("https://"))
+                    return false;
+
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    view.getContext().startActivity(intent);
+                    return true;
+                } catch (Exception e) {
+                    return true;
+                }
+            }
 
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
